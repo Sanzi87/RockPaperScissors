@@ -1,12 +1,17 @@
 import random
 
-emojis = {'r': '🤜', 'p': '🤚', 's': '✌️'}
-choices = ('r', 'p', 's')
+ROCK = 'r'
+PAPER = 'p'
+SCISSORS = 's'
+
+emojis = {ROCK: '🤜', PAPER: '🤚', SCISSORS: '✌️'}
+choices = tuple(emojis.keys())
 
 
 def get_user_choice():
     while True:
-        user_choice = input('Rock, paper, or scissors? (r/p/s): ').lower()
+        user_choice = input(
+            f'Rock, paper, or scissors? ({ROCK}/{PAPER}/{SCISSORS}): ').lower()
         # If choice is valid
         if user_choice in choices:
             return user_choice
@@ -24,7 +29,10 @@ def display_choices(user_choice, computer_choice):
 def determine_winner(user_choice, computer_choice):
     if user_choice == computer_choice:
         print('Tie!')
-    elif (user_choice == 'r' and computer_choice == 's') or (user_choice == 's' and computer_choice == 'p') or (user_choice == 'p' and computer_choice == 'r'):
+    elif (
+        (user_choice == ROCK and computer_choice == SCISSORS) or
+        (user_choice == SCISSORS and computer_choice == PAPER) or
+            (user_choice == PAPER and computer_choice == ROCK)):
         print('You win!')
     else:
         print('You lose!')
